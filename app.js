@@ -71,6 +71,7 @@ app.get('/', (request, response) => {
     <li><a href="/waffles/custom?type=banana">Banana waffles</a></li>
     <li><a href="/waffles/custom?type=blueberry">Blueberry waffles</a></li>
     <li><a href="/waffles/custom?type=nutella">Nutella waffles</a></li>
+    <li><a href="/sport/custom?type=football">BestSports</a></li>
     <li><a href="/bake?baked_good=cookies&count=10">Bake 10 cookies</a></li>
     <li><a href="/bake?baked_good=loaves+of+bread&count=5">Bake 5 loaves of bread</a> — notice how we represent spaces in the URL.</li>
     <li><a href="/bake?baked_good=cupcakes&count=1138">Bake 1138 cupcakes</a></li>
@@ -111,6 +112,18 @@ app.get('/waffles/custom', (request, response) => {
     <p>Change the value of the <code>type</code> parameter in the URL and see what happens.</p>
     <p><a href="/">Back to the homepage</a></p>
   `;
+
+  response.send(getLayoutHTML(content));
+});
+
+app.get('/sport/custom', (request, response) => {
+  let sportType = capitalize(request.query.type);
+
+  let content = `
+  <h1>${sportType} Sport Time!</h1>
+  <p>${sportType} Sports: Better than Ballet.<p>
+  <p>Change the value of the <code>type</code> parameter in the URL and see what happens.</p>
+  <p><a href="/">Back to the homepage</a></p>`;
 
   response.send(getLayoutHTML(content));
 });
